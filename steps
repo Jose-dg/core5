@@ -1,0 +1,42 @@
+1. install
+    django-tailwinds
+    django-allauth
+
+2. Create django app
+    django-admin startapp 'name_proyect'
+    Add app to settings
+
+3. Add configuration static and media FILES to settigns
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+    Create foldes media and static at same level to manage.py
+
+4. Add configuration urls
+
+    4.1 Core urls.py
+
+        from django.conf.urls.static import static
+        from django.conf import settings
+
+        if settings.DEBUG:
+            urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+            urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+    4.2 Marketplace urls.py
+
+        from django.urls import path
+
+        app_name = 'marketplace'
+
+        urlpatterns = [
+
+]
+
+5. Configure base and templates
+
