@@ -45,12 +45,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'marketplace',
+    'accounts',
 
     'tailwind',
     'theme'
 ]
-
-SITE_ID = 1
 
 TAILWIND_APP_NAME = 'theme'
 
@@ -58,7 +57,26 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 NPM_BIN_PATH = '/usr/local/bin/npm'
+
+AUTHENTICATION_BACKENDS = [
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+]
+
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_ON_GET = True
+AUTH_USER_MODEL = 'accounts.User'
+
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,6 +87,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'core5.urls'
 
@@ -89,15 +108,6 @@ TEMPLATES = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-
-]
 
 WSGI_APPLICATION = 'core5.wsgi.application'
 
